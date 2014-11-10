@@ -6,7 +6,7 @@ class Post {
 
 	function __construct( $title, $post_type = 'post' ) {
 		$maybe_id = intval($title);
-		if ($title == $maybe_id) {
+		if ($title === $maybe_id) {
 			$this->id = $maybe_id;
 			return;
 		}
