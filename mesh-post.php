@@ -34,11 +34,10 @@ class Post {
 	}
 
 	protected function check_if_post_exists( $slug, $post_type ) {
-		$args = array( 'name' => $slug, 'post_type' => $post_type );
-		$result = new \WP_Query( $args );
-		if ( $result->posts && isset( $result->posts[0] ) ) {
-			$post = $result->posts[0];
-			return $post->ID;
+		global $wpdb;
+		$row = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE post_name = '$slug'");
+		if ($row && isset($row->ID)) {
+			return $row->ID;
 		}
 		return false;
 	}
