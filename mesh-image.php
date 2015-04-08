@@ -6,29 +6,29 @@ class Image extends Post {
 		parent::__construct( $url, 'attachment' );
 	}
 
-	protected function maybe_create_post( $url, $post_type ) {
+	protected function maybe_create( $url, $post_type ) {
 		$image_exists = $this->check_if_image_exists( $url );
 		if ($image_exists) {
 			$upload_info = $this->get_image_data( $url );
-			$id = $this->create_post( $upload_info );
+			$id = $this->create( $upload_info );
 		} else {
 			$upload_info = $this->upload_image( $url );
-			$id = $this->create_post( $upload_info );
+			$id = $this->create( $upload_info );
 		}
 		return $id;
 	}
 
-	protected function create_post( $image_info, $post_type = 'attachment' ) {
+	protected function create( $image_info, $post_type = 'attachment' ) {
 		$filename = $image_info['file'];
 		$pathinfo = pathinfo( $filename );
 		$filetype = wp_check_filetype( basename( $filename ), null );
-		$data = array( 
-			'post_title' => $pathinfo['basename'], 
+		$data = array(
+			'post_title' => $pathinfo['basename'],
 			'post_mime_type' => $filetype['type'],
-			'guid' => $image_info['url'], 
-			'post_type' => $post_type, 
+			'guid' => $image_info['url'],
+			'post_type' => $post_type,
 			'post_content' => '',
-			'post_status' => 'inherit' 
+			'post_status' => 'inherit'
 		);
 		$pid = wp_insert_attachment( $data, $filename, 1 );
 		if ( !function_exists( 'wp_generate_attachment_metadata' ) ) {
