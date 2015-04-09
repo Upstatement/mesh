@@ -11,14 +11,22 @@ $post->set('post_content', 'This is your first WordPress post');
 $post->set('my_foo', 'bar');
 // "thumbnail" is a reserved key to add post thumbnails
 $post->set('thumbnail', 'http://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/STS120LaunchHiRes-edit1.jpg/490px-STS120LaunchHiRes-edit1.jpg');
+```
 
 ### Add a User
 ```php
 /* functions.php */
-$post = new Mesh\Post('Jared Novack', 'subscriber');
+$user = new Mesh\User('Jared Novack', 'subscriber');
 // add content...
-$post->set('description', 'Jared is cool');
+$user->set('description', 'Jared is cool');
 // add custom fields...
-$post->set('my_foo', 'bar');
+$user->set('my_foo', 'bar');
 // add images
-$post->set_image('headshot', 'http://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/STS120LaunchHiRes-edit1.jpg/490px-STS120LaunchHiRes-edit1.jpg');
+$user->set_image('headshot', 'http://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/STS120LaunchHiRes-edit1.jpg/490px-STS120LaunchHiRes-edit1.jpg');
+```
+
+### Import JSON
+See the [sample data](https://github.com/jarednova/mesh/blob/master/sample-data.json) for an example of what this should look like.
+```php
+$loader = new Mesh\JSON_Loader(__DIR__.'/../static/data/mesh-data.json');
+```

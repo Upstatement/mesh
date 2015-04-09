@@ -15,12 +15,14 @@
 			if (isset($json->posts)) {
 				$this->import_posts($json->posts);
 			}
+			if (json_last_error()) {
+				trigger_error( 'Mesh: There is an error in your JSON file : '.$file );
+			}
 		}
 
 		protected function import_users($array) {
 			foreach($array as $user_data) {
 				$user = new User($user_data->display_name);
-				//print_r($user);
 				foreach($user_data as $key => $value) {
 					if (strstr($key, ':image')) {
 						//insert image
