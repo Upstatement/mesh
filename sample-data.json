@@ -5,13 +5,30 @@
 			"subtitle"		: "Author of Cooking with Fire",
 			"long_bio"		: "Paula is fun",
 			"description"	: "Paula Marcoux is a food historian who lives in Plymouth she has worked professionally as a cook, an archaeologist, and a bread-oven builder. She is the food editor of Edible South Shore magazine, writes on food history topics for popular and academic audiences, and consults with museums, film producers, and publishers. She also gives regular workshops on natural leavening, historic baking, and wood-fired cooking.",
-			"headshot:image"	: "http://workman.com/authors/images/marcoux_paula.jpg"
+			"headshot:image"	: "http://workman.com/authors/images/marcoux_paula.jpg",
+			"links:repeater" : [
+				{
+					"service"	: "twitter",
+					"url"		: "http://twitter.com/storeypub"
+				},
+				{
+					"service"	: "facebook",
+					"url"		: "http://facebook.com/storeypub"
+				},
+				{
+					"service"	: "web",
+					"url"		: "http://storey.com"
+				}
+			],
+			"public_email"	: "paula@storey.com",
+			"public_phone"	: "413-555-5555"
 		},
 		{
 			"display_name"	: "Jared Novack",
 			"subtitle"		: "Author of Cooking with Fire",
-			"long_bio"		: "Jared is fun",
+			"long_bio"		: "Jared is funny!",
 			"description"	: "dfasdf",
+			"user_email"	: "jared@upstatement.com",
 			"headshot:image"	: "http://cdn.upstatement.com/wp-content/uploads/2013/03/square-e1410455582279-240x240-c-default.jpg"
 		}
 	]

@@ -34,9 +34,20 @@
 			$non_first_names = $names;
 			array_shift($non_first_names);
 			$last_name = implode(' ', $non_first_names);
-			$data = array( 'display_name' => $display_name, 'user_pass' => $this->default_password, 'first_name' => $first_name, 'last_name' => $last_name, 'role' => $role, 'user_login' => $slug );
+			$data = array( 'display_name' => $display_name, 'user_pass' => $this->default_password, 'first_name' => $first_name, 'last_name' => $last_name, 'role' => $role, 'user_login' => $slug, 'user_email' => $slug.'@example.org' );
 			$uid = wp_insert_user($data);
 			return $uid;
+		}
+
+		public function set_repeater( $key, $array ){
+			$this->set($key, count($array));
+			$i = 0;
+			foreach( $array as $entry ) {
+				foreach ($entry as $ekey => $eval ) {
+					$this->set($key.'_'.$i.'_'.$ekey, $eval);
+				}
+				$i++;
+			}
 		}
 
 		public function set_image( $key, $url ) {
@@ -57,8 +68,13 @@
 			if (!$override && isset( $post->$key ) && strlen( $post->$key ) ) {
 				return;
 			}
-			$update_data = array( 'ID' => $this->id, $key => $value );
-			wp_update_user($update_data);
+			//this causes plugin conflicts with ACF:
+			//$update_data = array( 'ID' => $this->id, $key => $value );
+			//wp_update_user($update_data);
+			//so let's do a brute-force version
+			global $wpdb;
+			$query = "UPDATE $wpdb->users SET $key = '$value' WHERE ID = $this->id LIMIT 1";
+			$wpdb->query($query);
 		}
 
 		protected function update_meta( $key, $value, $override ) {

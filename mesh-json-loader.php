@@ -20,11 +20,15 @@
 		protected function import_users($array) {
 			foreach($array as $user_data) {
 				$user = new User($user_data->display_name);
+				//print_r($user);
 				foreach($user_data as $key => $value) {
 					if (strstr($key, ':image')) {
 						//insert image
 						$image_key = explode(':', $key);
 						$user->set_image($image_key[0], $value);
+					} elseif (strstr($key, ':repeater')) {
+						$rep_key = explode(':', $key);
+						$user->set_repeater($rep_key[0], $value);
 					} else {
 						$user->set($key, $value);
 					}
