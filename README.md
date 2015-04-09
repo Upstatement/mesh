@@ -14,7 +14,6 @@ $post->set('thumbnail', 'http://upload.wikimedia.org/wikipedia/commons/thumb/d/d
 ```
 
 ### Add a User
-```php
 /* functions.php */
 $user = new Mesh\User('Jared Novack', 'subscriber');
 // add content...
