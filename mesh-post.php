@@ -1,12 +1,12 @@
 <?php namespace Mesh;
 
-class Post {
+class Post implements MeshObject {
 
 	var $id;
 
 	function __construct( $title, $post_type = 'post' ) {
-		$maybe_id = intval($title);
-		if ($title === $maybe_id) {
+		$maybe_id = intval( $title );
+		if ( $title === $maybe_id ) {
 			$this->id = $maybe_id;
 			return;
 		}
@@ -35,8 +35,8 @@ class Post {
 
 	protected function check_if_post_exists( $slug, $post_type ) {
 		global $wpdb;
-		$row = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE post_name = '$slug'");
-		if ($row && isset($row->ID)) {
+		$row = $wpdb->get_row( "SELECT * FROM $wpdb->posts WHERE post_name = '$slug'" );
+		if ( $row && isset( $row->ID ) ) {
 			return $row->ID;
 		}
 		return false;
@@ -50,16 +50,16 @@ class Post {
 		add_post_meta( $this->id, $key, $value, true );
 	}
 
-	protected function update_recognized_field( $key, $value, $override ) {
+	protected function update_recognized_field( $key, $value, $override = false ) {
 		$post = get_post( $this->id );
-		if (!$override && isset( $post->$key ) && strlen( $post->$key ) ) {
+		if ( !$override && isset( $post->$key ) && strlen( $post->$key ) ) {
 			return;
 		}
 		$update_data = array( 'ID' => $this->id, $key => $value );
 		wp_update_post( $update_data );
 	}
 
-	protected function update_thumbnail( $url, $override ) {
+	protected function update_thumbnail( $url, $override = false ) {
 		$thumbnail_id = get_post_meta( $this->id, '_thumbnail_id', true );
 		if ( $thumbnail_id && !$override ) {
 			return;
@@ -69,12 +69,19 @@ class Post {
 		$image->set( 'post_parent', $this->id );
 	}
 
+	public function set_image( $key, $url, $override = false ) {
+		if ($key === 'thumbnail') {
+			$this->update_thumbnail( $url, $override );
+		} else {
+			$image = new Image( $url );
+			$this->set( $key, $image->id );
+		}
+	}
+
 	public function set( $key, $value, $override = false ) {
-		if ( $key == 'thumbnail' ) {
-			$this->update_thumbnail( $value, $override );
-		} else if ( in_array( $key, self::get_recognized_fields() ) ) {
-				$this->update_recognized_field( $key, $value, $override );
-			} else {
+		if ( in_array( $key, self::get_recognized_fields() ) ) {
+			$this->update_recognized_field( $key, $value, $override );
+		} else {
 			$this->update_meta( $key, $value, $override );
 		}
 	}

@@ -10,10 +10,11 @@ $post->set('post_content', 'This is your first WordPress post');
 // add custom fields...
 $post->set('my_foo', 'bar');
 // "thumbnail" is a reserved key to add post thumbnails
-$post->set('thumbnail', 'http://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/STS120LaunchHiRes-edit1.jpg/490px-STS120LaunchHiRes-edit1.jpg');
+$post->set_image('thumbnail', 'http://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/STS120LaunchHiRes-edit1.jpg/490px-STS120LaunchHiRes-edit1.jpg');
 ```
 
 ### Add a User
+```php
 /* functions.php */
 $user = new Mesh\User('Jared Novack', 'subscriber');
 // add content...
