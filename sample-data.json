@@ -31,5 +31,22 @@
 			"user_email"	: "jared@upstatement.com",
 			"headshot:image"	: "http://cdn.upstatement.com/wp-content/uploads/2013/03/square-e1410455582279-240x240-c-default.jpg"
 		}
+	],
+	"terms" : [
+		{
+			"name" : "cookbooks",
+			"taxonomy" : "article-type",
+			"description" : "Lorem ipsum sample text blah blah blah"
+		},
+		{
+			"name" : "listicles",
+			"taxonomy" : "article-type",
+			"description" : "some description about this term"
+		},
+		{
+			"name" : "DIY",
+			"taxonomy" : "article-type",
+			"description" : "DIY stands for 'Do it Yourself'"
+		}
 	]
 }
