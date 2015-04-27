@@ -2,7 +2,7 @@
 
 class Term implements MeshObject {
 
-	function __construct( $term_name, $taxonomy ) {
+	function __construct( $term_name, $taxonomy = 'post_tag' ) {
 		if( is_string( $term_name ) && is_string( $taxonomy ) ) {
 			$this->maybe_create( $term_name, $taxonomy );
 		}
