@@ -15,6 +15,7 @@ class Mesh {
 		require_once('mesh-post.php');
 		require_once('mesh-image.php');
 		require_once('mesh-user.php');
+		require_once('mesh-term.php');
 
 		require_once('mesh-json-loader.php');
 	}
