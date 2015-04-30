@@ -40,6 +40,14 @@
 		}
 
 		protected function import_posts($array) {
-
+			foreach( $array as $post_data ) {
+				$post = new Post( $post_data->post_title, 'post' );
+				foreach( $post_data as $key => $value ) {
+					if ( $key === "thumbnail" ) {
+						$post->set_image( $key, $value );
+					}
+					$post->set( $key, $value );
+				}
+			}
 		}
 	}
