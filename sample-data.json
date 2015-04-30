@@ -32,6 +32,23 @@
 			"headshot:image"	: "http://cdn.upstatement.com/wp-content/uploads/2013/03/square-e1410455582279-240x240-c-default.jpg"
 		}
 	],
+	"terms" : [
+		{
+			"name" : "cookbooks",
+			"taxonomy" : "article-type",
+			"description" : "Lorem ipsum sample text blah blah blah"
+		},
+		{
+			"name" : "listicles",
+			"taxonomy" : "article-type",
+			"description" : "some description about this term"
+		},
+		{
+			"name" : "DIY",
+			"taxonomy" : "article-type",
+			"description" : "DIY stands for 'Do it Yourself'"
+		}
+	],
 	"posts" : [
 			{
 				"post_title" : "Top 10 Things to Do",
@@ -51,8 +68,7 @@
 				"post_author" : 215,
 				"thumbnail" : "http://1.bp.blogspot.com/-QKPp20s-FeA/VM-OFoY-uuI/AAAAAAAAD9A/6j75drXo30w/s1600/176_johnpolak_crocodilestitch_csbw.png",
 				"terms" : [
-            		{ "name" : "recipe", "taxonomy" : "article-type"} ,
-            		{ "name" : "excerpt", "taxonomy" : "article-type"}
+            		{ "name" : "recipe", "taxonomy" : "article-type"}
         		]
 			},
 			{
@@ -62,7 +78,7 @@
 				"post_author" : 3,
 				"thumbnail" : "http://4.bp.blogspot.com/-W6yGUAfPz6g/VNzaPtNZJsI/AAAAAAAAECE/ghqOw10ru3s/s1600/MRead_BCCSing_B123198.jpg",
 				"terms" : [
-            		{ "name" : "recipe", "taxonomy" : "article-type"} ,
+            		{ "name" : "recipe", "taxonomy" : "article-type"},
             		{ "name" : "excerpt", "taxonomy" : "article-type"}
         		]
 			}
