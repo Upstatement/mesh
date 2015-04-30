@@ -9,11 +9,17 @@ class Term implements MeshObject {
 		}
 	}
 
+	/*
+	 * @return int
+	 */
 	protected function maybe_create( $term_name, $taxonomy ) {
-		if( taxonomy_exists( $taxonomy ) && !term_exists( $term_name ) ) {
-			$id = $this->create( $term_name, $taxonomy );
-			return $id;
+		if (!taxonomy_exists($taxonomy)) {
+			register_taxonomy($taxonomy, 'post');
 		}
+		if( taxonomy_exists( $taxonomy ) && !term_exists( $term_name ) ) {
+			return $this->create( $term_name, $taxonomy );
+		}
+		return term_exists($term_name, $taxonomy);
 	}
 
 	protected function create( $term_name, $taxonomy ) {
