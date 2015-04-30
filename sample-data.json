@@ -48,5 +48,28 @@
 			"taxonomy" : "article-type",
 			"description" : "DIY stands for 'Do it Yourself'"
 		}
-	]
+	],
+	"posts" : [
+			{
+				"post_title" : "Top 10 Things to Do",
+				"post_content" : "Lorem ipsum blah blah sample content",
+				"post_type" : "article",
+				"post_author" : 216,
+				"thumbnail" : "http://1.bp.blogspot.com/-lQN3VNF9thA/VMlYAleO33I/AAAAAAAAD7U/5ljdmJubCbU/s1600/Mokelumne_River_0001.jpg"
+			},
+			{
+				"post_title" : "Another Article Title",
+				"post_content" : "This article is about a lot of things",
+				"post_type" : "article",
+				"post_author" : 215,
+				"thumbnail" : "http://1.bp.blogspot.com/-QKPp20s-FeA/VM-OFoY-uuI/AAAAAAAAD9A/6j75drXo30w/s1600/176_johnpolak_crocodilestitch_csbw.png"
+			},
+			{
+				"post_title" : "An excerpt from my book",
+				"post_content" : "This is how the article begins",
+				"post_type" : "article",
+				"post_author" : 3,
+				"thumbnail" : "http://4.bp.blogspot.com/-W6yGUAfPz6g/VNzaPtNZJsI/AAAAAAAAECE/ghqOw10ru3s/s1600/MRead_BCCSing_B123198.jpg"
+			}
+		]
 }
