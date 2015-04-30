@@ -79,9 +79,9 @@ class Post implements MeshObject {
 	}
 
 	public function set_terms( $key, $terms ) {
-		foreach( $terms as $term ) {
-			$term_id = term_exists( $term->name, $term->taxonomy );
-			wp_set_post_terms( $this->id, $term_id, $term->taxonomy, true );
+		foreach( $terms as $term_data ) {
+			$term = new Term($term_data->name, $term_data->taxonomy);
+			wp_set_object_terms( $this->id, intval($term->id), $term_data->taxonomy, true );
 		}
 	}
 
