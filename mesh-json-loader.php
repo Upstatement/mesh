@@ -15,6 +15,9 @@
 			if (isset($json->posts)) {
 				$this->import_posts($json->posts);
 			}
+			if (isset($json->terms)) {
+				$this->import_terms($json->terms);
+			}
 			if (json_last_error()) {
 				trigger_error( 'Mesh: There is an error in your JSON file : '.$file );
 			}
@@ -47,6 +50,17 @@
 						$post->set_image( $key, $value );
 					}
 					$post->set( $key, $value );
+				}
+			}
+		}
+
+		protected function import_terms($array) {
+			foreach( $array as $term_data ) {
+				$term = new Term( $term_data->name, $term_data->taxonomy );
+				if( $term->id ) {
+					foreach( $term_data as $key => $value ) {
+						$term->set( $key, $value );
+					}
 				}
 			}
 		}
