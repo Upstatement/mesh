@@ -48,8 +48,11 @@
 				foreach( $post_data as $key => $value ) {
 					if ( $key === "thumbnail" ) {
 						$post->set_image( $key, $value );
+					} else if ( $key === "terms" ) {
+						$post->set_terms( $key, $value );
+					} else {
+						$post->set( $key, $value );
 					}
-					$post->set( $key, $value );
 				}
 			}
 		}

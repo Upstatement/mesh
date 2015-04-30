@@ -78,9 +78,16 @@ class Post implements MeshObject {
 		}
 	}
 
+	public function set_terms( $key, $terms ) {
+		foreach( $terms as $term_data ) {
+			$term = new Term($term_data->name, $term_data->taxonomy);
+			wp_set_object_terms( $this->id, intval($term->id), $term_data->taxonomy, true );
+		}
+	}
+
 	public function set( $key, $value, $override = false ) {
 		if ( in_array( $key, self::get_recognized_fields() ) ) {
-			$this->update_recognized_field( $key, $value, $override );
+			$this->update_recognized_field( $key, $value, $override = true );
 		} else {
 			$this->update_meta( $key, $value, $override );
 		}
