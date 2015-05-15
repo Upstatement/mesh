@@ -11,15 +11,26 @@ Author URI: http://upstatement.com/
 class Mesh {
 
 	public static function autoload(){
-		require_once('mesh-object.php');
-		require_once('mesh-post.php');
-		require_once('mesh-image.php');
-		require_once('mesh-user.php');
-		require_once('mesh-term.php');
+		require_once('lib/mesh-object.php');
+		require_once('lib/mesh-post.php');
+		require_once('lib/mesh-image.php');
+		require_once('lib/mesh-user.php');
+		require_once('lib/mesh-term.php');
 
-		require_once('mesh-json-loader.php');
+		require_once('lib/mesh-json-loader.php');
+	}
+
+	public static function add_actions() {
+		add_action('wp_login', array('Mesh', 'load_json'));
+	}
+
+	public static function load_json() {
+		$file = trailingslashit(get_stylesheet_directory()).'mesh.json';
+		$file = apply_filters('mesh/load_json', $file);
+		$loader = new Mesh\JSON_Loader($file);
 	}
 
 }
 
 Mesh::autoload();
+Mesh::add_actions();
