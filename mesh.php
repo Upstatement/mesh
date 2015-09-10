@@ -27,7 +27,9 @@ class Mesh {
 	public static function load_json() {
 		$file = trailingslashit(get_stylesheet_directory()).'mesh.json';
 		$file = apply_filters('mesh/load_json', $file);
-		$loader = new Mesh\JSON_Loader($file);
+		if ( file_exists($file) ) {
+			$loader = new Mesh\JSON_Loader($file);
+		}
 	}
 
 }
