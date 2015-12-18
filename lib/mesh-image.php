@@ -12,6 +12,7 @@ class Image extends Post {
 			$upload_info = $this->get_image_data( $url );
 			$id = $this->create( $upload_info );
 		} else {
+			$url = str_replace(' ', '%20', $url);
 			$upload_info = $this->upload_image( $url );
 			$id = $this->create( $upload_info );
 		}
