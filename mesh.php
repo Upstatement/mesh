@@ -4,7 +4,7 @@ Plugin Name: Mesh
 Plugin URI: http://upstatement.com/mesh
 Description: Mesh bootstraps content into WordPress
 Author: Jared Novack + Upstatement
-Version: 0.0.1
+Version: 0.2
 Author URI: http://upstatement.com/
 */
 

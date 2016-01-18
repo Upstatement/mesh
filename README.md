@@ -30,3 +30,11 @@ See the [sample data](https://github.com/jarednova/mesh/blob/master/sample-data.
 ```php
 $loader = new Mesh\JSON_Loader(__DIR__.'/../static/data/mesh-data.json');
 ```
+
+### WP-CLI
+
+Load your JSON file:
+
+```sh
+wp mesh load_json mesh.json
+```
