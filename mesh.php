@@ -16,7 +16,7 @@ class Mesh {
 		require_once('lib/mesh-image.php');
 		require_once('lib/mesh-user.php');
 		require_once('lib/mesh-term.php');
-
+		require_once('lib/mesh-command.php');
 		require_once('lib/mesh-json-loader.php');
 	}
 
