@@ -2,25 +2,32 @@
 
 	class JSON_Loader {
 
-		function __construct($file) {
-			$this->import_json_file($file);
+		function __construct( $file = null ) {
+			if ( $file ) {
+				$this->import_json_file($file);
+			}
 		}
 
-		protected function import_json_file($file) {
+		public function import_json_file($file) {
 			$data = file_get_contents($file);
-			$json = json_decode($data);
-			if (isset($json->users)) {
-				$this->import_users($json->users);
+			if ($data) {
+				$json = json_decode($data);
+				if (isset($json->users)) {
+					$this->import_users($json->users);
+				}
+				if (isset($json->posts)) {
+					$this->import_posts($json->posts);
+				}
+				if (isset($json->terms)) {
+					$this->import_terms($json->terms);
+				}
+				if (json_last_error()) {
+					trigger_error( 'Mesh: There is an error in your JSON file : '.$file );
+					return false;
+				}
+				return true;
 			}
-			if (isset($json->posts)) {
-				$this->import_posts($json->posts);
-			}
-			if (isset($json->terms)) {
-				$this->import_terms($json->terms);
-			}
-			if (json_last_error()) {
-				trigger_error( 'Mesh: There is an error in your JSON file : '.$file );
-			}
+			return false;
 		}
 
 		protected function import_users($array) {

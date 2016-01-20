@@ -26,7 +26,13 @@ class Mesh_Command extends WP_CLI_Command {
     function load_json( $args = ['mesh.json'], $assoc_args ) {
     	list( $filename ) = $args;
     	$filename = trailingslashit(get_stylesheet_directory()).$filename;
-        $loader = new Mesh\JSON_Loader($filename);
+        $loader = new Mesh\JSON_Loader();
+        $success = $loader->import_json_file($filename);
+        if ($success) {
+        	return WP_CLI::success( "Loaded JSON file ".$filename );
+    	} else {
+    		return WP_CLI::error( "Failed to load JSON file ".$filename );
+    	}
     }
 }
 
