@@ -35,5 +35,3 @@ class Mesh_Command extends WP_CLI_Command {
     	}
     }
 }
-
-WP_CLI::add_command( 'mesh', 'Mesh_Command' );

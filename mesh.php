@@ -41,3 +41,7 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
 }
 
 Mesh::add_actions();
+
+if (defined('WP_CLI') && WP_CLI) {
+	WP_CLI::add_command( 'mesh', 'Mesh_Command' );
+}
