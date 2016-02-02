@@ -34,5 +34,10 @@ class Mesh {
 
 }
 
-Mesh::autoload();
+if (file_exists(__DIR__.'/vendor/autoload.php')) {
+	require __DIR__.'/vendor/autoload.php';
+} else {
+	Mesh::autoload();
+}
+
 Mesh::add_actions();
