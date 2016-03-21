@@ -19,17 +19,23 @@ class Term implements MeshObject {
 		if( taxonomy_exists( $taxonomy ) && !term_exists( $term_name ) ) {
 			return $this->create( $term_name, $taxonomy );
 		}
-		return term_exists($term_name, $taxonomy);
+		$result = term_exists($term_name, $taxonomy);
+		if (is_array($result) && array_key_exists('term_id', $result)) {
+			return $result['term_id'];
+		}
 	}
 
 	protected function create( $term_name, $taxonomy ) {
-		return wp_insert_term( $term_name, $taxonomy );
+		$result = wp_insert_term( $term_name, $taxonomy );
+		if (is_array($result) && array_key_exists('term_id', $result)) {
+			return $result['term_id'];
+		}
 	}
 
 	public function set( $key, $value, $override = false ) {
 		if( $key !== "name" && $key !== "taxonomy" ) {
 			$data = array( $key => $value );
-			wp_update_term( $this->id["term_id"],  $this->taxonomy, $data );
+			wp_update_term( $this->id,  $this->taxonomy, $data );
 		}
 	}
 }
