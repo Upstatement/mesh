@@ -4,7 +4,7 @@ class Post implements MeshObject {
 
 	var $id;
 
-	function __construct( $title, $post_type = 'post', $post_status = 'publish') {
+	function __construct( $title, $post_type = 'post', $post_status = 'publish' ) {
 		$maybe_id = intval( $title );
 		if ( $title === $maybe_id ) {
 			$this->id = $maybe_id;
