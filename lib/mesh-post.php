@@ -4,24 +4,24 @@ class Post implements MeshObject {
 
 	var $id;
 
-	function __construct( $title, $post_type = 'post' ) {
+	function __construct( $title, $post_type = 'post', $post_status = 'publish') {
 		$maybe_id = intval( $title );
 		if ( $title === $maybe_id ) {
 			$this->id = $maybe_id;
 			return;
 		}
-		$this->id = $this->maybe_create( $title, $post_type );
+		$this->id = $this->maybe_create( $title, $post_type, $post_status );
 	}
 
 	protected function get_recognized_fields() {
 		return array( 'ID', 'post_title', 'post_content', 'post_name', 'post_status', 'post_type', 'post_author', 'ping_status', 'post_parent', 'menu_order', 'to_ping', 'pinged', 'post_password', 'guid', 'post_excerpt', 'post_date', 'post_date_gmt', 'comment_status', 'post_content_filtered' );
 	}
 
-	protected function maybe_create( $title, $post_type ) {
+	protected function maybe_create( $title, $post_type, $post_status ) {
 		$slug = sanitize_title( $title );
 		$id = $this->check_if_post_exists( $slug, $post_type );
 		if ( !$id ) {
-			$id = $this->create( $title, $post_type );
+			$id = $this->create( $title, $post_type, $post_status );
 		}
 		return $id;
 
@@ -29,7 +29,7 @@ class Post implements MeshObject {
 
 	protected function create( $title, $post_type ) {
 		//insert post
-		$data = array( 'post_title' => $title, 'post_type' => $post_type, 'post_status' => 'publish' );
+		$data = array( 'post_title' => $title, 'post_type' => $post_type, 'post_status' => $post_status );
 		return wp_insert_post( $data );
 	}
 
